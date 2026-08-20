@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://studenttrackersystem-professional-0xn7.onrender.com';
+const API_BASE_URL = 'https://real-time-school-minotring-system.onrender.com';
 const token = localStorage.getItem('token');
 let currentUser = null;
 let tenants = [];
