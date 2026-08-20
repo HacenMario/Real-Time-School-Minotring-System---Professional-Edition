@@ -1,4 +1,5 @@
-/* Students UI enhancement - visual layer only. No JS/logic changes. */
+/* Students UI enhancement - نسخة متطورة */
+
 #adminDashboard .students-grid,
 #parentDashboard .students-grid {
   position: relative;
@@ -10,16 +11,17 @@
 
 #adminDashboard .students-grid > *,
 #parentDashboard .students-grid > * {
-  animation: studentCardIn .55s cubic-bezier(.2,.7,.2,1) both;
+  animation: studentCardIn .55s cubic-bezier(.2, .7, .2, 1) both;
   transition: transform .28s ease, filter .28s ease;
 }
 
 #adminDashboard .students-grid > *:hover,
 #parentDashboard .students-grid > *:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.01);
   filter: drop-shadow(0 18px 28px rgba(15, 23, 42, .12));
 }
 
+/* ===== حقل البحث المتطور ===== */
 #adminDashboard #searchStudentInput {
   border: 1px solid rgba(148, 163, 184, .35) !important;
   background: rgba(255,255,255,.78) !important;
@@ -27,6 +29,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease !important;
+  font-family: 'Tajawal', system-ui, sans-serif;
 }
 
 #adminDashboard #searchStudentInput:focus {
@@ -35,6 +38,7 @@
   transform: translateY(-1px);
 }
 
+/* ===== أقسام البحث والنماذج ===== */
 #adminDashboard .search-section,
 #adminDashboard .add-student-form,
 #adminDashboard .log-section {
@@ -52,12 +56,12 @@
 
 #adminDashboard .search-section .btn-toggle-form:hover,
 #adminDashboard .search-section .btn-secondary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 10px 22px rgba(15, 23, 42, .12);
   filter: brightness(1.03);
 }
 
-/* Common student-card internals used by the existing renderer */
+/* ===== بطاقات الطلاب المحسنة ===== */
 #adminDashboard .student-card,
 #parentDashboard .student-card,
 #adminDashboard .student-item,
@@ -67,6 +71,11 @@
   border: 1px solid rgba(148, 163, 184, .18);
   box-shadow: 0 12px 30px rgba(15, 23, 42, .07);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px 18px;
 }
 
 #adminDashboard .student-card::before,
@@ -88,7 +97,7 @@
 #parentDashboard .student-card:hover,
 #adminDashboard .student-item:hover,
 #parentDashboard .student-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.01);
   box-shadow: 0 20px 42px rgba(15, 23, 42, .13);
   border-color: rgba(99, 102, 241, .25);
 }
@@ -100,27 +109,39 @@
   transform: scaleX(1);
 }
 
+/* ===== أزرار البطاقات ===== */
 #adminDashboard .student-card button,
 #parentDashboard .student-card button,
 #adminDashboard .student-item button,
 #parentDashboard .student-item button {
   transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  border-radius: 12px !important;
+  font-weight: 600;
+  padding: 6px 14px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Tajawal', system-ui, sans-serif;
 }
 
 #adminDashboard .student-card button:hover,
 #parentDashboard .student-card button:hover,
 #adminDashboard .student-item button:hover,
 #parentDashboard .student-item button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.04);
   box-shadow: 0 8px 18px rgba(15, 23, 42, .12);
   filter: brightness(1.04);
 }
 
-/* Search empty/loading states when existing renderer provides them */
+/* حالة البحث الفارغة */
 #adminDashboard #adminStudentsList:empty,
 #parentDashboard #parentStudentsList:empty {
   min-height: 90px;
   border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: 500;
 }
 
 @keyframes studentCardIn {
@@ -128,6 +149,7 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ===== التجاوب ===== */
 @media (max-width: 760px) {
   #adminDashboard .students-grid,
   #parentDashboard .students-grid {
