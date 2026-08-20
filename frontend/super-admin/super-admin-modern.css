@@ -1,0 +1,223 @@
+/*
+ * Super Admin — Modern Visual Layer
+ * Visual-only. Does not modify application logic.
+ */
+:root{
+  --sa-accent:#6366f1;
+  --sa-accent-2:#8b5cf6;
+  --sa-cyan:#06b6d4;
+  --sa-surface:rgba(255,255,255,.86);
+  --sa-border:rgba(148,163,184,.20);
+  --sa-glow:0 0 0 1px rgba(99,102,241,.05),0 20px 60px rgba(15,23,42,.09);
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 8%,rgba(99,102,241,.10),transparent 28%),
+    radial-gradient(circle at 92% 14%,rgba(6,182,212,.08),transparent 25%),
+    linear-gradient(135deg,#f7f9fd 0%,#f1f5fb 100%);
+}
+
+.sidebar{
+  box-shadow:10px 0 45px rgba(2,6,23,.12);
+  border-right:1px solid rgba(255,255,255,.06);
+}
+
+.brand-icon{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(79,70,229,.28);
+}
+.brand-icon::after{
+  content:"";
+  position:absolute;
+  width:70px;height:70px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.24);
+  transform:translate(28px,-28px);
+}
+
+.nav-item{
+  position:relative;
+  overflow:hidden;
+}
+.nav-item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(99,102,241,.18),transparent 75%);
+  transform:translateX(-105%);
+  transition:transform .28s ease;
+}
+.nav-item:hover::before,.nav-item.active::before{transform:translateX(0)}
+.nav-item i,.nav-item span{position:relative;z-index:1}
+.nav-item i{transition:transform .25s ease,color .25s ease}
+.nav-item:hover i{transform:scale(1.12) rotate(-3deg)}
+
+.main{position:relative}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(247,249,253,.78);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom-color:rgba(148,163,184,.18);
+}
+
+.eyebrow{display:flex;align-items:center;gap:8px}
+.eyebrow::before{
+  content:"";
+  width:7px;height:7px;border-radius:50%;
+  background:var(--success);
+  box-shadow:0 0 0 5px rgba(22,163,74,.10);
+  animation:sa-pulse 2s ease-in-out infinite;
+}
+
+.sync{
+  padding:7px 10px;
+  border:1px solid rgba(148,163,184,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+}
+
+.user-chip{
+  padding:6px 10px 6px 6px;
+  border:1px solid rgba(148,163,184,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  box-shadow:0 6px 20px rgba(15,23,42,.05);
+}
+.avatar{
+  background:linear-gradient(135deg,#eef2ff,#ede9fe);
+  box-shadow:inset 0 0 0 1px rgba(99,102,241,.10);
+}
+
+.section.active{animation:sa-section-in .34s ease both}
+.section-head h2{letter-spacing:-.2px}
+.section-head p{max-width:720px}
+
+.primary,.secondary,.small-btn,.language button,.logout{position:relative;overflow:hidden}
+.primary::after,.secondary::after,.small-btn::after,.language button::after,.logout::after{
+  content:"";
+  position:absolute;
+  top:0;left:-120%;width:70%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-18deg);
+  transition:left .55s ease;
+}
+.primary:hover::after,.secondary:hover::after,.small-btn:hover::after,.language button:hover::after,.logout:hover::after{left:150%}
+
+.primary{background:linear-gradient(135deg,var(--sa-accent),var(--sa-accent-2));}
+.primary:hover{filter:saturate(1.08)}
+
+.cards .stat-card{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(248,250,252,.88));
+  box-shadow:var(--sa-glow);
+}
+.cards .stat-card::before{
+  content:"";
+  position:absolute;
+  width:130px;height:130px;
+  border-radius:50%;
+  right:-55px;top:-65px;
+  background:linear-gradient(135deg,rgba(99,102,241,.10),rgba(139,92,246,.02));
+}
+.cards .stat-card::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;height:3px;
+  background:linear-gradient(90deg,var(--sa-accent),var(--sa-cyan));
+  transform:scaleX(.25);
+  transform-origin:left;
+  transition:transform .3s ease;
+}
+.cards .stat-card:hover::after{transform:scaleX(1)}
+.stat-icon{box-shadow:0 9px 22px rgba(99,102,241,.10)}
+.stat-value{letter-spacing:-.6px}
+
+.panel,.health-card,.activity{
+  background:var(--sa-surface);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:var(--sa-glow);
+}
+.panel-head{border-bottom:1px solid rgba(148,163,184,.12)}
+
+.role-stats,.presence-stats{gap:10px}
+.role-row,.presence-row{
+  border:1px solid rgba(148,163,184,.13);
+  border-radius:13px;
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
+.role-row:hover,.presence-row:hover{
+  transform:translateX(-2px);
+  background:rgba(248,250,252,.8);
+  border-color:rgba(99,102,241,.18);
+}
+
+.table-panel{overflow:hidden}
+thead th{background:rgba(248,250,252,.92);backdrop-filter:blur(10px)}
+tbody tr{position:relative}
+tbody tr:hover{background:linear-gradient(90deg,rgba(99,102,241,.035),rgba(6,182,212,.025))}
+td:first-child{font-weight:600}
+
+.activity{
+  position:relative;
+  overflow:hidden;
+}
+.activity::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--sa-accent),var(--sa-cyan));
+  opacity:.75;
+}
+.activity-icon{box-shadow:0 8px 18px rgba(99,102,241,.10)}
+
+.health-card{
+  position:relative;
+  overflow:hidden;
+}
+.health-card::after{
+  content:"";
+  position:absolute;
+  width:120px;height:120px;border-radius:50%;
+  right:-50px;bottom:-70px;
+  background:rgba(6,182,212,.07);
+}
+
+.modal{
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  background:rgba(2,6,23,.42);
+}
+.modal-card{
+  border:1px solid rgba(255,255,255,.45);
+  box-shadow:0 30px 90px rgba(2,6,23,.25);
+}
+
+.toast{border:1px solid rgba(255,255,255,.35)}
+
+@keyframes sa-pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(.72);opacity:.72}
+}
+@keyframes sa-section-in{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:none}
+}
+
+@media(max-width:760px){
+  .topbar{background:rgba(247,249,253,.90)}
+  .user-chip{padding-right:7px}
+  .cards .stat-card::before{width:90px;height:90px}
+  .panel,.health-card,.activity{box-shadow:0 10px 30px rgba(15,23,42,.07)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .eyebrow::before{animation:none}
+  .section.active{animation:none}
+}

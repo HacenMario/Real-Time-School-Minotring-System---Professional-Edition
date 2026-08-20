@@ -1,0 +1,400 @@
+/* ==========================================================
+   Dashboard Modern UI - Visual layer only
+   Does not alter application logic or JavaScript behavior.
+   ========================================================== */
+
+#adminDashboard {
+    --dash-primary: #2563eb;
+    --dash-primary-2: #4f46e5;
+    --dash-success: #10b981;
+    --dash-danger: #ef4444;
+    --dash-warning: #f59e0b;
+    --dash-info: #06b6d4;
+    --dash-text: #172033;
+    --dash-muted: #64748b;
+    --dash-border: rgba(148,163,184,.20);
+    --dash-surface: rgba(255,255,255,.88);
+    --dash-shadow: 0 18px 50px rgba(15,23,42,.08);
+    animation: dashboardFadeIn .55s ease both;
+}
+
+@keyframes dashboardFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#adminDashboard > header {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 22px;
+    margin-bottom: 22px;
+    border: 1px solid var(--dash-border);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(79,70,229,.20), transparent 34%),
+        radial-gradient(circle at 0% 100%, rgba(37,99,235,.14), transparent 32%),
+        var(--dash-surface);
+    box-shadow: var(--dash-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+#adminDashboard > header::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(99,102,241,.10);
+    inset-inline-end: -70px;
+    top: -90px;
+    pointer-events: none;
+}
+
+#adminDashboard > header h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--dash-text);
+    font-size: clamp(20px, 2vw, 27px);
+    font-weight: 800;
+    letter-spacing: -.4px;
+}
+
+#adminDashboard > header h1 i {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-inline-end: 8px;
+    border-radius: 14px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--dash-primary), var(--dash-primary-2));
+    box-shadow: 0 10px 24px rgba(37,99,235,.28);
+}
+
+#adminDashboard .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 13px;
+    margin-inline-start: auto;
+    border: 1px solid rgba(16,185,129,.20);
+    border-radius: 999px;
+    color: #047857;
+    background: rgba(16,185,129,.10);
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 7px 18px rgba(16,185,129,.08);
+}
+
+#adminDashboard .live-badge i {
+    font-size: 8px;
+    animation: livePulse 1.7s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: .45; transform: scale(.85); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+#adminDashboard .dark-mode-toggle,
+#adminDashboard .btn-logout {
+    position: relative;
+    z-index: 1;
+    min-height: 42px;
+    border-radius: 13px;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+#adminDashboard .dark-mode-toggle:hover,
+#adminDashboard .btn-logout:hover {
+    transform: translateY(-2px);
+}
+
+#adminDashboard .btn-toggle-form,
+#adminDashboard .btn-primary,
+#adminDashboard .btn-secondary,
+#adminDashboard .btn-show-old,
+#adminDashboard .btn-hide-old {
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(15,23,42,.08);
+    transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+
+#adminDashboard .btn-toggle-form::before,
+#adminDashboard .btn-primary::before,
+#adminDashboard .btn-secondary::before,
+#adminDashboard .btn-show-old::before,
+#adminDashboard .btn-hide-old::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.24) 50%, transparent 75%);
+    transform: translateX(-120%);
+    transition: transform .55s ease;
+    pointer-events: none;
+}
+
+#adminDashboard .btn-toggle-form:hover,
+#adminDashboard .btn-primary:hover,
+#adminDashboard .btn-secondary:hover,
+#adminDashboard .btn-show-old:hover,
+#adminDashboard .btn-hide-old:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 28px rgba(15,23,42,.14);
+    filter: saturate(1.08);
+}
+
+#adminDashboard .btn-toggle-form:hover::before,
+#adminDashboard .btn-primary:hover::before,
+#adminDashboard .btn-secondary:hover::before,
+#adminDashboard .btn-show-old:hover::before,
+#adminDashboard .btn-hide-old:hover::before {
+    transform: translateX(120%);
+}
+
+#adminDashboard .add-student-form {
+    border: 1px solid var(--dash-border);
+    border-radius: 20px;
+    background: rgba(248,250,252,.78);
+    box-shadow: 0 12px 35px rgba(15,23,42,.06);
+    animation: panelReveal .32s ease both;
+}
+
+@keyframes panelReveal {
+    from { opacity: 0; transform: translateY(-7px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#adminDashboard input,
+#adminDashboard select,
+#adminDashboard textarea {
+    border-color: #dbe4ef !important;
+    border-radius: 14px !important;
+    background: rgba(255,255,255,.94) !important;
+    color: var(--dash-text);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+#adminDashboard input:focus,
+#adminDashboard select:focus,
+#adminDashboard textarea:focus {
+    border-color: rgba(37,99,235,.55) !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.10) !important;
+    transform: translateY(-1px);
+    outline: none;
+}
+
+#adminDashboard .search-section {
+    padding: 14px;
+    border: 1px solid var(--dash-border);
+    border-radius: 20px;
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 10px 30px rgba(15,23,42,.05);
+}
+
+#adminDashboard .search-section > div:first-child {
+    min-height: 48px;
+}
+
+#adminDashboard .search-section input {
+    min-height: 48px;
+    padding-inline-start: 48px !important;
+    box-sizing: border-box;
+}
+
+#adminDashboard .search-section > div:first-child i {
+    inset-inline-start: 18px !important;
+    color: var(--dash-primary) !important;
+}
+
+#adminDashboard .students-grid {
+    gap: 18px !important;
+    margin-top: 18px;
+}
+
+#adminDashboard .students-grid > * {
+    animation: cardReveal .45s ease both;
+}
+
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(14px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#adminDashboard .students-grid > *:hover {
+    transform: translateY(-5px);
+}
+
+#adminDashboard .log-section,
+#adminDashboard .leave-section,
+#adminDashboard .holidays-section {
+    position: relative;
+    margin-top: 24px !important;
+    padding: 20px !important;
+    border: 1px solid var(--dash-border) !important;
+    border-top: 1px solid var(--dash-border) !important;
+    border-radius: 22px;
+    background: rgba(255,255,255,.80);
+    box-shadow: 0 12px 35px rgba(15,23,42,.055);
+}
+
+#adminDashboard .log-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 15px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(148,163,184,.16);
+}
+
+#adminDashboard .log-header h3,
+#adminDashboard .leave-section h3,
+#adminDashboard .holidays-section h3 {
+    margin: 0;
+    color: var(--dash-text);
+    font-weight: 800;
+}
+
+#adminDashboard .log-header h3 i,
+#adminDashboard .leave-section h3 i {
+    color: var(--dash-primary);
+}
+
+#adminDashboard .leave-section,
+#adminDashboard .holidays-section {
+    overflow: hidden;
+}
+
+#adminDashboard .leave-section::before,
+#adminDashboard .holidays-section::before,
+#adminDashboard .log-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline-start: 20px;
+    width: 80px;
+    height: 3px;
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(90deg, var(--dash-primary), var(--dash-primary-2));
+}
+
+#adminDashboard .holidays-section h3 {
+    color: var(--dash-text) !important;
+}
+
+#adminDashboard .holidays-section > div:first-child {
+    margin-bottom: 18px !important;
+}
+
+#adminDashboard .holidays-section [id="holidayForm"] {
+    border: 1px solid var(--dash-border) !important;
+    border-radius: 16px !important;
+    background: rgba(248,250,252,.85) !important;
+}
+
+#adminDashboard #adminLogContainer,
+#adminDashboard #leaveRequestsList {
+    min-height: 20px;
+}
+
+@media (max-width: 900px) {
+    #adminDashboard > header {
+        flex-wrap: wrap;
+        padding: 16px;
+    }
+
+    #adminDashboard .live-badge {
+        margin-inline-start: 0;
+    }
+
+    #adminDashboard > header .lang-switcher {
+        width: 100%;
+        justify-content: center;
+        margin: 4px 0 0;
+    }
+
+    #adminDashboard .log-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    #adminDashboard > header {
+        border-radius: 18px;
+    }
+
+    #adminDashboard > header h1 {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    #adminDashboard > header h1 i {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+    }
+
+    #adminDashboard .dark-mode-toggle,
+    #adminDashboard .btn-logout {
+        flex: 1;
+    }
+
+    #adminDashboard .search-section {
+        padding: 10px;
+    }
+
+    #adminDashboard .search-section > div:first-child {
+        min-width: 100% !important;
+        width: 100%;
+    }
+
+    #adminDashboard .search-section button {
+        flex: 1;
+        min-height: 44px;
+    }
+
+    #adminDashboard .log-section,
+    #adminDashboard .leave-section,
+    #adminDashboard .holidays-section {
+        padding: 15px !important;
+        border-radius: 18px;
+    }
+
+    #adminDashboard .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    #adminDashboard .form-grid > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #adminDashboard,
+    #adminDashboard .students-grid > *,
+    #adminDashboard .add-student-form,
+    #adminDashboard .live-badge i {
+        animation: none !important;
+    }
+
+    #adminDashboard .btn-toggle-form,
+    #adminDashboard .btn-primary,
+    #adminDashboard .btn-secondary,
+    #adminDashboard .btn-show-old,
+    #adminDashboard .btn-hide-old,
+    #adminDashboard input,
+    #adminDashboard select,
+    #adminDashboard textarea {
+        transition: none !important;
+    }
+}

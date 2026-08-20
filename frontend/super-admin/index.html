@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <title>Super Admin • Real-Time School Monitoring System</title>
+  <link rel="icon" href="../Favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./super-admin.css">
+  <link rel="stylesheet" href="./super-admin-modern.css">
+</head>
+<body>
+  <div id="app" class="sa-app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fas fa-shield-halved"></i></div>
+        <div><strong>Real-Time School Monitoring System</strong><small>Super Admin</small></div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-section="overview"><i class="fas fa-chart-pie"></i><span data-i18n="overview">لوحة التحكم</span></button>
+        <button class="nav-item" data-section="tenants"><i class="fas fa-school"></i><span data-i18n="tenants">المؤسسات</span></button>
+        <button class="nav-item" data-section="users"><i class="fas fa-users"></i><span data-i18n="users">المستخدمون</span></button>
+        <button class="nav-item" data-section="activity"><i class="fas fa-clock-rotate-left"></i><span data-i18n="activity">النشاطات</span></button>
+        <button class="nav-item" data-section="health"><i class="fas fa-heart-pulse"></i><span data-i18n="health">حالة النظام</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="language">
+          <button data-lang="ar">🇩🇿 عربي</button>
+          <button data-lang="fr">🇫🇷 Français</button>
+          <button data-lang="en">🇬🇧 English</button>
+        </div>
+        <button id="logoutBtn" class="logout"><i class="fas fa-right-from-bracket"></i><span data-i18n="logout">تسجيل الخروج</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <button id="mobileMenu" class="icon-btn"><i class="fas fa-bars"></i></button>
+          <div class="eyebrow">SYSTEM CONTROL CENTER</div>
+          <h1 id="pageTitle" data-i18n="overview">لوحة التحكم</h1>
+        </div>
+        <div class="top-actions">
+          <span id="lastSync" class="sync"><i class="fas fa-circle"></i> —</span>
+          <div class="user-chip"><span class="avatar" id="userAvatar">SA</span><div><strong id="userName">Super Admin</strong><small id="userEmail"></small></div></div>
+        </div>
+      </header>
+
+      <div id="errorBox" class="error-box" hidden></div>
+
+      <section id="section-overview" class="section active">
+        <div class="section-head"><div><h2 data-i18n="overview_title">نظرة عامة</h2><p data-i18n="overview_desc">مراقبة شاملة لجميع المؤسسات والمستخدمين.</p></div><button class="primary" id="refreshOverview"><i class="fas fa-rotate"></i> <span data-i18n="refresh">تحديث</span></button></div>
+        <div class="cards" id="overviewCards"></div>
+        <div class="grid-2">
+          <div class="panel">
+            <div class="panel-head"><h3 data-i18n="user_distribution">توزيع المستخدمين</h3></div>
+            <div id="roleStats" class="role-stats"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3 data-i18n="student_status">حالة الطلاب</h3></div>
+            <div id="presenceStats" class="presence-stats"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-tenants" class="section">
+        <div class="section-head"><div><h2 data-i18n="tenants_title">المؤسسات</h2><p data-i18n="tenants_desc">إنشاء وإدارة المؤسسات المستقلة.</p></div><button class="primary" id="addTenantBtn"><i class="fas fa-plus"></i> <span data-i18n="new_tenant">مؤسسة جديدة</span></button></div>
+        <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th data-i18n="tenant">المؤسسة</th><th data-i18n="key">المفتاح</th><th data-i18n="users">المستخدمون</th><th data-i18n="students">الطلاب</th><th data-i18n="status">الحالة</th><th data-i18n="action">إجراء</th></tr></thead><tbody id="tenantsTable"></tbody></table></div></div>
+      </section>
+
+      <section id="section-users" class="section">
+        <div class="section-head"><div><h2 data-i18n="users_title">المستخدمون</h2><p data-i18n="users_desc">إدارة الحسابات داخل جميع المؤسسات.</p></div><button class="primary" id="addUserBtn"><i class="fas fa-user-plus"></i> <span data-i18n="new_user">مستخدم جديد</span></button></div>
+        <div class="toolbar"><select id="userRoleFilter"><option value="" data-i18n="all_roles">كل الأدوار</option><option value="admin" data-i18n="admin">مدير</option><option value="teacher" data-i18n="teacher">موظف</option><option value="parent" data-i18n="parent">ولي أمر</option></select><select id="userTenantFilter"><option value="" data-i18n="all_tenants">كل المؤسسات</option></select><button class="secondary" id="refreshUsers"><i class="fas fa-rotate"></i> <span data-i18n="refresh">تحديث</span></button></div>
+        <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th data-i18n="user">المستخدم</th><th data-i18n="role">الدور</th><th data-i18n="tenant">المؤسسة</th><th data-i18n="phone">الهاتف</th><th data-i18n="created_at">تاريخ الإنشاء</th><th data-i18n="action">إجراء</th></tr></thead><tbody id="usersTable"></tbody></table></div></div>
+      </section>
+
+      <section id="section-activity" class="section">
+        <div class="section-head"><div><h2 data-i18n="activity_title">النشاطات</h2><p data-i18n="activity_desc">آخر الأحداث المسجلة في النظام.</p></div><button class="secondary" id="refreshActivity"><i class="fas fa-rotate"></i> <span data-i18n="refresh">تحديث</span></button></div>
+        <div id="activityList" class="activity-list"></div>
+      </section>
+
+      <section id="section-health" class="section">
+        <div class="section-head"><div><h2 data-i18n="health_title">حالة النظام</h2><p data-i18n="health_desc">مراقبة API وقاعدة البيانات والبيئة.</p></div><button class="secondary" id="refreshHealth"><i class="fas fa-rotate"></i> <span data-i18n="check_now">فحص الآن</span></button></div>
+        <div id="healthGrid" class="health-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-head"><h3 id="modalTitle">—</h3><button id="closeModal" class="icon-btn"><i class="fas fa-xmark"></i></button></div>
+      <form id="modalForm"></form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="./super-admin.js"></script>
+</body>
+</html>

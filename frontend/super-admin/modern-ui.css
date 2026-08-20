@@ -1,0 +1,34 @@
+/* Super Admin visual-only enhancement layer */
+:root{--sa-blue:#2563eb;--sa-purple:#7c3aed;--sa-cyan:#06b6d4;--sa-shadow:0 20px 55px rgba(15,23,42,.10)}
+body{overflow-x:hidden;background:radial-gradient(circle at 10% 0%,rgba(96,165,250,.12),transparent 30%),radial-gradient(circle at 100% 100%,rgba(167,139,250,.13),transparent 32%),var(--bg)}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(3px);opacity:.28}
+body::before{width:380px;height:380px;left:-150px;top:-160px;background:radial-gradient(circle,#60a5fa,transparent 68%);animation:saFloat 14s ease-in-out infinite}
+body::after{width:430px;height:430px;right:-180px;bottom:-190px;background:radial-gradient(circle,#a78bfa,transparent 68%);animation:saFloat 17s ease-in-out infinite reverse}
+@keyframes saFloat{50%{transform:translate(20px,-18px) scale(1.05)}}
+@keyframes saIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes saGlow{50%{box-shadow:0 0 0 7px rgba(37,99,235,.08)}}
+.sidebar{box-shadow:14px 0 45px rgba(2,6,23,.18);border-right:1px solid rgba(255,255,255,.06)}
+.brand{position:relative;overflow:hidden}
+.brand::after{content:"";position:absolute;left:-40%;right:-40%;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--sa-cyan),var(--sa-purple),transparent);animation:saSweep 5s linear infinite}
+@keyframes saSweep{from{transform:translateX(-25%)}to{transform:translateX(25%)}}
+.nav-item{transition:transform .2s ease,background .2s ease,box-shadow .2s ease!important}
+.nav-item:hover{transform:translateX(-4px);box-shadow:0 10px 25px rgba(0,0,0,.10)}
+.nav-item.active{box-shadow:0 10px 30px rgba(37,99,235,.18)}
+.main{position:relative}
+.topbar{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.72);box-shadow:0 14px 40px rgba(15,23,42,.07)}
+.sync{animation:saGlow 2.5s ease-in-out infinite}
+.cards .card,.cards>*, .panel,.table-panel,.health-card,.activity-item{animation:saIn .45s ease both}
+.panel,.table-panel,.cards>*,.health-card{border:1px solid rgba(148,163,184,.18)!important;box-shadow:var(--sa-shadow)!important;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.panel:hover,.table-panel:hover,.cards>*:hover,.health-card:hover{transform:translateY(-4px);box-shadow:0 25px 70px rgba(37,99,235,.13)!important;border-color:rgba(37,99,235,.18)!important}
+.primary{background:linear-gradient(135deg,#2563eb,#4f46e5)!important;box-shadow:0 10px 25px rgba(37,99,235,.20)}
+.primary:hover{box-shadow:0 16px 35px rgba(37,99,235,.30)!important;transform:translateY(-2px)}
+.secondary,.icon-btn{transition:transform .2s ease,box-shadow .2s ease!important}
+.secondary:hover,.icon-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(15,23,42,.10)}
+.user-chip{box-shadow:0 10px 28px rgba(15,23,42,.07);border:1px solid rgba(148,163,184,.15)}
+.avatar{box-shadow:0 0 0 4px rgba(37,99,235,.08)}
+table tbody tr{transition:background .18s ease,transform .18s ease}
+table tbody tr:hover{background:rgba(239,246,255,.75);transform:translateX(-2px)}
+.modal{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.modal-card{box-shadow:0 30px 90px rgba(15,23,42,.25)!important;border:1px solid rgba(255,255,255,.70)!important}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(37,99,235,.10)!important;transform:translateY(-1px)}
+@media(prefers-reduced-motion:reduce){body::before,body::after,.sync,.brand::after{animation:none!important}.panel,.table-panel,.cards>*,.health-card{animation:none!important}}

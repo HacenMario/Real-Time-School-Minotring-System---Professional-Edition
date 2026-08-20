@@ -1,0 +1,25 @@
+{
+  "name": "school-attendance-backend",
+  "version": "2.0.0",
+  "description": "Production-ready real-time student attendance and parent communication API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js",
+    "test:smoke": "node tests/smoke.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "html5-qrcode": "^2.3.8",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.5.4",
+    "web-push": "^3.6.7",
+    "node-cron": "^3.0.0"
+  }
+}
