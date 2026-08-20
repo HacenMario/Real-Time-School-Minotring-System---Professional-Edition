@@ -1,4 +1,4 @@
-const CACHE_NAME = 'student-tracker-shell-v5';
+const CACHE_NAME = 'student-tracker-shell-v6';
 const SHELL = [
   '/',
   '/index.html',
